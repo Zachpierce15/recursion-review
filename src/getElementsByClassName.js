@@ -6,21 +6,21 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className) {
   // create var that points to current node
-  var theBod = document.body
+  // var theBod = document.body
   var results = []
-  function checkClass (node) {
-   node = node || theBod
-    var classes = node.classList;
-    if (classes.contains(className)) {
+  function checkClass (n) {
+   var node = n || document.body;
+   
+    if (node.classList && node.classList.contains(className)) {
       results.push(node)
     } 
-    if(node.childNodes) {
+    if(node.children.length > 0) {
       for(var i = 0; i < node.children.length; i++) {
         checkClass(node.children[i])
       }
     }
   }
-  
+  checkClass()
 console.log(results)
   return results
 };
